@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Lavishly Yours
+- Font Author: Copyright 2014-2021 The Lavishly Yours Project Authors (https://github.com/googlefonts/lavishly-yours)
+- Font Source: https://fonts.gstatic.com/s/lavishlyyours/v5/jizDREVIvGwH5OjiZmX9r5z_WxUY0TY7ikbI.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL)

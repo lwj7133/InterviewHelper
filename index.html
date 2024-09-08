@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历投递管理</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <!-- 删除原有的Google Fonts链接 -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet"> -->
+
+    <!-- 更新 Google Fonts 链接 -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+
+    <!-- 在 <head> 标签中添加以下脚本 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <div class="title-container">
+        <h1 class="artistic-font">每一次投递，都是成长的机会</h1>
+    </div>
+
+    <button id="themeToggle">切换主题</button>
+
+    <div class="container">
+        <div class="column left-column">
+            <form id="jobForm">
+                <div class="form-row">
+                    <input type="text" id="company" placeholder="公司名称" required>
+                    <input type="text" id="position" placeholder="职位名称" required>
+                </div>
+                <div class="form-row">
+                    <input type="date" id="date" required>
+                    <select id="status">
+                        <option value="待回复">待回复</option>
+                        <option value="待面试">待面试</option>
+                        <option value="已面试">已面试</option>
+                        <option value="已拒绝">已拒绝</option>
+                        <option value="已录用">已录用</option>
+                    </select>
+                    <button type="submit">添加记录</button>
+                </div>
+            </form>
+
+            <!-- 调整顺序：将状态选择按钮放在搜索框前面 -->
+            <div class="filter-search-container">
+                <div class="filter-wrapper">
+                    <select id="filterStatus">
+                        <option value="all">全部</option>
+                        <option value="待回复">待回复</option>
+                        <option value="待面试">待面试</option>
+                        <option value="已面试">已面试</option>
+                        <option value="已拒绝">已拒绝</option>
+                        <option value="已录用">已录用</option>
+                    </select>
+                </div>
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" placeholder="搜索公司或职位">
+                </div>
+            </div>
+
+            <table id="jobTable">
+                <tr>
+                    <th>公司名称</th>
+                    <th>职位名称</th>
+                    <th>投递日期</th>
+                    <th>面试时间</th>
+                    <th>状态</th>
+                    <th>面试记录</th>
+                    <th>操作</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="column right-column">
+            <div id="chartContainer">
+                <div id="report"></div>
+                <div class="chart">
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="export-container">
+        <button id="refreshButton">刷新数据</button>
+        <button id="exportExcel">导出为Excel</button>
+        <button id="backupData">备份数据</button>
+        <button id="restoreData">恢复数据</button>
+    </div>
+
+    <!-- 添加一个隐藏的文件输入元素 -->
+    <input type="file" id="restoreFile" style="display: none;">
+
+    <!-- 删除 WebRTC 相关的 UI 元素 -->
+
+    <!-- 删除 PeerJS 库 -->
+    <script src="script.js"></script>
+
+    <!-- 添加模态框 -->
+    <div id="interviewNotesModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>面试记录</h2>
+            <textarea id="interviewNotesText" rows="10"></textarea>
+            <button id="saveInterviewNotes">保存</button>
+        </div>
+    </div>
+</body>
+
+</html>
